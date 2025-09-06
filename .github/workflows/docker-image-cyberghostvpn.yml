@@ -16,10 +16,11 @@ jobs:
       # Login to Docker
       - name: Docker login
         env:
+          DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
           DOCKER_USER: ${{ secrets.DOCKER_USER }}
           DOCKER_PW: ${{ secrets.DOCKER_PW }}
         run: |
-          docker login -u $DOCKER_USER -p $DOCKER_PW
+          echo $DOCKER_TOKEN |docker login -u $DOCKER_USER --password-stdin
           
       # Builds the docker image
       - name: Docker build Latest
