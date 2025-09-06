@@ -1,0 +1,43 @@
+name: cyberghostvpn
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      # Login to Docker
+      - name: Docker login
+        env:
+          DOCKER_USER: ${{ secrets.DOCKER_USER }}
+          DOCKER_PW: ${{ secrets.DOCKER_PW }}
+        run: |
+          docker login -u $DOCKER_USER -p $DOCKER_PW
+          
+      # Builds the docker image
+      - name: Docker build Latest
+        run: |
+          docker build --build-arg buildtime_script_version=${{ github.event.release.tag_name }} . -t se0lx/cyberghostvpn:latest
+          
+      # Pushes the Docker image to DockerHub
+      - name: Docker push Latest
+        run: |
+          docker push se0lx/cyberghostvpn:latest
+          
+      # Builds the docker image
+      - name: Docker build Tag
+        run: |
+          docker build --build-arg buildtime_script_version=${{ github.event.release.tag_name }} . -t se0lx/cyberghostvpn:${{ github.event.release.tag_name }}
+          
+      # Pushes the Docker image to DockerHub
+      - name: Docker push Tag
+        run: |
+          docker push se0lx/cyberghostvpn:${{ github.event.release.tag_name }}
+
