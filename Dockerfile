@@ -1,12 +1,12 @@
 FROM ubuntu:20.04
 LABEL MAINTAINER="Tyler McPhee"
 LABEL CREATOR="Tyler McPhee"
-LABEL GITHUB="https://github.com/tmcphee/cyberghostvpn"
-LABEL DOCKER="https://hub.docker.com/r/tmcphee/cyberghostvpn"
+LABEL GITHUB="https://github.com/se0lx/cyberghostvpn"
+LABEL DOCKER="https://hub.docker.com/r/se0lx/cyberghostvpn"
 
 ARG buildtime_script_version
 
-ENV cyberghost_version=1.3.4
+ENV cyberghost_version=1.4.1
 ENV linux_version=20.04
 ENV script_version=$buildtime_script_version
 
