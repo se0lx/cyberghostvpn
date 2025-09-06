@@ -31,9 +31,9 @@ jobs:
       # Builds the docker image
       - name: Docker build Latest
         run: |
-          docker build . -t tmcphee/ctest:latest
+          docker build . -t se0lx/ctest:latest
           
       # Pushes the Docker image to DockerHub
       - name: Docker push Latest
         run: |
-          docker push tmcphee/ctest:latest
+          docker push se0lx/ctest:latest
